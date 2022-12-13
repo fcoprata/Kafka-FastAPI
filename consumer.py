@@ -5,15 +5,16 @@ from config import KAFKA_BOOSTRAP_SERVERS, ORDER_KAFKA_TOPIC, ORDER_CONFIRMED_KA
 consumer = KafkaConsumer(ORDER_KAFKA_TOPIC,bootstrap_servers=KAFKA_BOOSTRAP_SERVERS)
 producer = KafkaProducer(bootstrap_servers=KAFKA_BOOSTRAP_SERVERS)
 
-while True:
+print(consumer)
 
-    for message in consumer:
-        consumed_message = json.loads(message.value.decode())
-        print(consumed_message)
-        # name = consumed_message["name"]
-        # items = consumed_message["items"]
-        # value = consumed_message["value"]
-
+for message in consumer:
+    consumed_message = json.loads(message.value.decode())
+    print(consumed_message)
+    name = consumed_message["name"]
+    items = consumed_message["items"]
+    value = consumed_message["value"]
+    cartao = consumed_message["cartao"]
+    
         # data = {
         #     "name": name,
         #     "items": items,

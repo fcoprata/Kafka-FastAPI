@@ -1,6 +1,6 @@
 import json
 from config import KAFKA_BOOSTRAP_SERVERS, ORDER_KAFKA_TOPIC
-from kafka import KafkaProducer,KafkaConsumer
+from kafka import KafkaProducer
 from fastapi import FastAPI
 import uvicorn
 
@@ -8,11 +8,12 @@ app = FastAPI()
 producer = KafkaProducer(bootstrap_servers=KAFKA_BOOSTRAP_SERVERS)
 
 @app.post("/order")
-def order(name: str, items: str, value: float):
+def order(name: str, items: str, value: float, cartao: int):
     data = {
         "name": name,
         "items": items,
-        "value": value
+        "value": value,
+        "cartao": cartao
     }
     producer.send(ORDER_KAFKA_TOPIC,json.dumps(data).encode("utf-8"))
     return {"order finished"}
