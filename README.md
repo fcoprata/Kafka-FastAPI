@@ -1,4 +1,5 @@
-code<docker-compose up --build>
-code<uvicorn main:app> 
-or 
-code<python main.py>
+Comando para subir o ambiente:
+docker-compose up --build
+
+Comando para rodar api:
+uvicorn main:app 
