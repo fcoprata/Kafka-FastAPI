@@ -21,6 +21,7 @@ def order_confirmed():
             cartao_validado = cartao
         else:
             print({"cartão inválido"})
+            
         if len(str(cvv)) == 3:
             cvv_validado = cvv
         else:
